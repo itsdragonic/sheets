@@ -1,1 +1,155 @@
-s
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Sheet → Array & PDF (Letter)</title>
+	<style>
+		body { font-family: sans-serif; padding: 2rem; }
+		textarea { width: 100%; height: 200px; font-family: monospace; }
+		button { margin-top: 1rem; padding: 0.5rem 1rem; }
+		a { display: inline-block; margin-top: 1rem; }
+	</style>
+	<!-- jsPDF from CDN -->
+	<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</head>
+<body>
+	<h1>Paste Your Sheet Data</h1>
+	<textarea id="sheetInput" placeholder="Paste here…"></textarea>
+	<br/>
+	<button id="parseBtn">Parse &amp; Generate PDF</button>
+	<div id="pdfLinkContainer"></div>
+
+	<script>
+		const { jsPDF } = window.jspdf;
+		let sheet = [];
+
+		// Counts entries containing both className and param
+		function chickenCount(className, param) {
+			return sheet.reduce((acc, line) => {
+				if (line.includes(className) && line.includes(param)) {
+					return acc + 1;
+				}
+				return acc;
+			}, 0);
+		}
+
+		function generatePDFGrid() {
+			// US Letter size 8.5×11 in portrait, units in mm
+			const doc = new jsPDF({
+				unit: 'mm',
+				format: 'letter',
+				orientation: 'portrait'
+			});
+
+			// smaller font size
+			doc.setFontSize(8);
+
+			const pageWidth   = doc.internal.pageSize.getWidth();
+			const pageHeight  = doc.internal.pageSize.getHeight();
+			const margin      = 10;   // 10 mm margins
+			const rows        = 48;
+			const cols        = 7;
+			const cellWidth   = (pageWidth  - margin * 2) / cols;
+			const cellHeight  = (pageHeight - margin * 2) / rows;
+			const textOffset  = 2;    // mm from left/top of cell
+			const textYOffset = 0;    // additional down shift in mm
+
+			// draw grid lines
+			for (let i = 0; i <= rows; i++) {
+				const y = margin + i * cellHeight;
+				doc.line(margin, y, pageWidth - margin, y);
+			}
+			for (let j = 0; j <= cols; j++) {
+				const x = margin + j * cellWidth;
+				doc.line(x, margin, x, pageHeight - margin);
+			}
+
+            function createText(text, cellID) {
+                // parse column letter and row number
+                const colLetter = cellID.match(/[A-Z]+/i)[0].toUpperCase();
+                const rowNumber = parseInt(cellID.match(/\d+/)[0], 10);
+                const col = colLetter.charCodeAt(0) - 65;     // A→0, B→1, etc.
+                const row = rowNumber - 1;                   // 1-based → 0-based
+
+                // compute coordinates
+                const x = margin + col * cellWidth + textOffset;
+                const y = margin + row * cellHeight + cellHeight
+                        - textOffset + textYOffset;
+
+                // draw text
+                doc.text(text, x, y);
+            }
+
+
+			// text cells
+            doc.setFont(undefined, 'bold');
+			
+            createText("2 Chickens", "D2");
+            createText("3 Chickens", "E2");
+            createText("4 Chickens", "F2");
+            createText("# of Orders", "G2");
+            createText("Delivery #1 @ 10:35", "A3");
+            createText("10:45 LUNCH", "A4");
+            createText("11:25 LUNCH", "A14");
+            createText("TOTAL", "A27");
+            createText("Delivery #2 @ 11:50", "A29");
+            createText("12:00 LUNCH", "A30");
+            createText("12:43 LUNCH", "A36");
+            createText("TOTAL", "A47");
+
+            doc.setFont(undefined, 'normal');
+
+            createText("P3A", "A5");
+            createText("P3B", "A6");
+            createText("KA", "A7");
+            createText("KB", "A8");
+            createText("1A", "A9");
+            createText("1B", "A10");
+            createText("2A", "A11");
+            createText("2B", "A12");
+            createText("P4A (11:10)", "A15");
+            createText("P4B (11:10)", "A16");
+            createText("3A", "A17");
+            createText("3B", "A18");
+            createText("4A", "A19");
+            createText("4B", "A20");
+            createText("ADD EXTRA", "A21");
+            createText("5A", "A31");
+            createText("5B", "A32");
+            createText("6A", "A33");
+            createText("6B", "A34");
+            createText("7A", "A37");
+            createText("7B", "A38");
+            createText("8A", "A39");
+            createText("8B", "A40");
+            createText("ADD EXTRA", "A42");
+            createText("10", "B42");
+			
+            // functions
+			doc.text(
+				String(chickenCount("PreK3A", "2")),
+				margin + 3 * cellWidth + textOffset,
+				margin + 4 * cellHeight + cellHeight - textOffset + textYOffset
+			);
+
+			// create PDF link
+			const pdfUrl    = doc.output('bloburl');
+			const container = document.getElementById('pdfLinkContainer');
+			container.innerHTML = '';
+			const link      = document.createElement('a');
+			link.href       = pdfUrl;
+			link.target     = '_blank';
+			link.textContent= 'Open PDF (Letter 8.5×11")';
+			container.appendChild(link);
+		}
+
+		document.getElementById('parseBtn').addEventListener('click', () => {
+			let raw = document.getElementById('sheetInput').value;
+			raw = raw.replace(/\t/g, ' ').replace(/\u0008/g, '');
+			sheet = raw.split(/\r?\n/);
+			console.log('sheet array:', sheet);
+			generatePDFGrid();
+		});
+	</script>
+</body>
+</html>
