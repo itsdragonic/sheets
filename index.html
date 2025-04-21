@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Sheet → Array & PDF (Letter)</title>
+	<title>Google Sheets Program</title>
 	<style>
 		body { font-family: sans-serif; padding: 2rem; }
 		textarea { width: 100%; height: 200px; font-family: monospace; }
@@ -36,12 +36,14 @@
 		function generatePDFGrid() {
 			// US Letter size 8.5×11 in portrait, units in mm
 			const doc = new jsPDF({
+				title: 'hi',
 				unit: 'mm',
 				format: 'letter',
 				orientation: 'portrait'
 			});
 
-			// smaller font size
+			// properties
+			doc.setProperties({ title: `Sheet (${date})` });
 			doc.setFontSize(8);
 
 			const pageWidth   = doc.internal.pageSize.getWidth();
@@ -99,6 +101,7 @@
 
             doc.setFont(undefined, 'normal');
 
+			createText(String(date), "A1");
             createText("P3A", "A5");
             createText("P3B", "A6");
             createText("KA", "A7");
@@ -114,6 +117,7 @@
             createText("4A", "A19");
             createText("4B", "A20");
             createText("ADD EXTRA", "A21");
+			createText("10", "B21");
             createText("5A", "A31");
             createText("5B", "A32");
             createText("6A", "A33");
@@ -126,11 +130,273 @@
             createText("10", "B42");
 			
             // functions
-			doc.text(
-				String(chickenCount("PreK3A", "2")),
-				margin + 3 * cellWidth + textOffset,
-				margin + 4 * cellHeight + cellHeight - textOffset + textYOffset
+			let P3A = [
+				chickenCount('PreK3A', '2*'),
+				chickenCount('PreK3A', '3*'),
+				chickenCount('PreK3A', '4*')
+			];
+			createText(String(P3A[0]*2 + P3A[1]*3 + P3A[2]*4), 'B5');
+			createText(String(P3A[0]), 'D5');
+			createText(String(P3A[1]), 'E5');
+			createText(String(P3A[2]), 'F5');
+			createText(String(P3A[0] + P3A[1] + P3A[2]), 'G5');
+
+			let P3B = [
+				chickenCount('PreK3B', '2*'),
+				chickenCount('PreK3B', '3*'),
+				chickenCount('PreK3B', '4*')
+			];
+			createText(String(P3B[0]*2 + P3B[1]*3 + P3B[2]*4), 'B6');
+			createText(String(P3B[0]), 'D6');
+			createText(String(P3B[1]), 'E6');
+			createText(String(P3B[2]), 'F6');
+			createText(String(P3B[0] + P3B[1] + P3B[2]), 'G6');
+
+			let KA = [
+				chickenCount('KA', '2*'),
+				chickenCount('KA', '3*'),
+				chickenCount('KA', '4*')
+			];
+			createText(String(KA[0]*2 + KA[1]*3 + KA[2]*4), 'B7');
+			createText(String(KA[0]), 'D7');
+			createText(String(KA[1]), 'E7');
+			createText(String(KA[2]), 'F7');
+			createText(String(KA[0] + KA[1] + KA[2]), 'G7');
+
+			let KB = [
+				chickenCount('KB', '2*'),
+				chickenCount('KB', '3*'),
+				chickenCount('KB', '4*')
+			];
+			createText(String(KB[0]*2 + KB[1]*3 + KB[2]*4), 'B8');
+			createText(String(KB[0]), 'D8');
+			createText(String(KB[1]), 'E8');
+			createText(String(KB[2]), 'F8');
+			createText(String(KB[0] + KB[1] + KB[2]), 'G8');
+
+			let _1A = [
+				chickenCount('1A', '2*'),
+				chickenCount('1A', '3*'),
+				chickenCount('1A', '4*')
+			];
+			createText(String(_1A[0]*2 + _1A[1]*3 + _1A[2]*4), 'B9');
+			createText(String(_1A[0]), 'D9');
+			createText(String(_1A[1]), 'E9');
+			createText(String(_1A[2]), 'F9');
+			createText(String(_1A[0] + _1A[1] + _1A[2]), 'G9');
+
+			let _1B = [
+				chickenCount('1B', '2*'),
+				chickenCount('1B', '3*'),
+				chickenCount('1B', '4*')
+			];
+			createText(String(_1B[0]*2 + _1B[1]*3 + _1B[2]*4), 'B10');
+			createText(String(_1B[0]), 'D10');
+			createText(String(_1B[1]), 'E10');
+			createText(String(_1B[2]), 'F10');
+			createText(String(_1B[0] + _1B[1] + _1B[2]), 'G10');
+
+			let _2A = [
+				chickenCount('2A', '2*'),
+				chickenCount('2A', '3*'),
+				chickenCount('2A', '4*')
+			];
+			createText(String(_2A[0]*2 + _2A[1]*3 + _2A[2]*4), 'B11');
+			createText(String(_2A[0]), 'D11');
+			createText(String(_2A[1]), 'E11');
+			createText(String(_2A[2]), 'F11');
+			createText(String(_2A[0] + _2A[1] + _2A[2]), 'G11');
+
+			let _2B = [
+				chickenCount('2B', '2*'),
+				chickenCount('2B', '3*'),
+				chickenCount('2B', '4*')
+			];
+			createText(String(_2B[0]*2 + _2B[1]*3 + _2B[2]*4), 'B12');
+			createText(String(_2B[0]), 'D12');
+			createText(String(_2B[1]), 'E12');
+			createText(String(_2B[2]), 'F12');
+			createText(String(_2B[0] + _2B[1] + _2B[2]), 'G12');
+
+			let P4A = [
+				chickenCount('PreK4A', '2*'),
+				chickenCount('PreK4A', '3*'),
+				chickenCount('PreK4A', '4*')
+			];
+			createText(String(P4A[0]*2 + P4A[1]*3 + P4A[2]*4), 'B15');
+			createText(String(P4A[0]), 'D15');
+			createText(String(P4A[1]), 'E15');
+			createText(String(P4A[2]), 'F15');
+			createText(String(P4A[0] + P4A[1] + P4A[2]), 'G15');
+
+			let P4B = [
+				chickenCount('PreK4B', '2*'),
+				chickenCount('PreK4B', '3*'),
+				chickenCount('PreK4B', '4*')
+			];
+			createText(String(P4B[0]*2 + P4B[1]*3 + P4B[2]*4), 'B16');
+			createText(String(P4B[0]), 'D16');
+			createText(String(P4B[1]), 'E16');
+			createText(String(P4B[2]), 'F16');
+			createText(String(P4B[0] + P4B[1] + P4B[2]), 'G16');
+
+			let _3A = [
+				chickenCount(' 3A', '2*'),
+				chickenCount(' 3A', '3*'),
+				chickenCount(' 3A', '4*')
+			];
+			createText(String(_3A[0]*2 + _3A[1]*3 + _3A[2]*4), 'B17');
+			createText(String(_3A[0]), 'D17');
+			createText(String(_3A[1]), 'E17');
+			createText(String(_3A[2]), 'F17');
+			createText(String(_3A[0] + _3A[1] + _3A[2]), 'G17');
+
+			let _3B = [
+				chickenCount(' 3B', '2*'),
+				chickenCount(' 3B', '3*'),
+				chickenCount(' 3B', '4*')
+			];
+			createText(String(_3B[0]*2 + _3B[1]*3 + _3B[2]*4), 'B18');
+			createText(String(_3B[0]), 'D18');
+			createText(String(_3B[1]), 'E18');
+			createText(String(_3B[2]), 'F18');
+			createText(String(_3B[0] + _3B[1] + _3B[2]), 'G18');
+
+			let _4A = [
+				chickenCount(' 4A', '2*'),
+				chickenCount(' 4A', '3*'),
+				chickenCount(' 4A', '4*')
+			];
+			createText(String(_4A[0]*2 + _4A[1]*3 + _4A[2]*4), 'B19');
+			createText(String(_4A[0]), 'D19');
+			createText(String(_4A[1]), 'E19');
+			createText(String(_4A[2]), 'F19');
+			createText(String(_4A[0] + _4A[1] + _4A[2]), 'G19');
+
+			let _4B = [
+				chickenCount(' 4B', '2*'),
+				chickenCount(' 4B', '3*'),
+				chickenCount(' 4B', '4*')
+			];
+			createText(String(_4B[0]*2 + _4B[1]*3 + _4B[2]*4), 'B20');
+			createText(String(_4B[0]), 'D20');
+			createText(String(_4B[1]), 'E20');
+			createText(String(_4B[2]), 'F20');
+			createText(String(_4B[0] + _4B[1] + _4B[2]), 'G20');
+
+			// Total
+			let total1 = [
+				P3A, P3B, KA, KB,
+				_1A, _1B, _2A, _2B,
+				P4A, P4B, _3A, _3B,
+				_4A, _4B
+			].reduce(
+				(sum, cls) => sum + cls[0]*2 + cls[1]*3 + cls[2]*4,
+				0
 			);
+
+			createText(String(total1 + 10), "B27");
+
+			let _5A = [
+				chickenCount('5A', '2*'),
+				chickenCount('5A', '3*'),
+				chickenCount('5A', '4*')
+			];
+			createText(String(_5A[0]*2 + _5A[1]*3 + _5A[2]*4), 'B31');
+			createText(String(_5A[0]), 'D31');
+			createText(String(_5A[1]), 'E31');
+			createText(String(_5A[2]), 'F31');
+			createText(String(_5A[0] + _5A[1] + _5A[2]), 'G31');
+
+			let _5B = [
+				chickenCount('5B', '2*'),
+				chickenCount('5B', '3*'),
+				chickenCount('5B', '4*')
+			];
+			createText(String(_5B[0]*2 + _5B[1]*3 + _5B[2]*4), 'B32');
+			createText(String(_5B[0]), 'D32');
+			createText(String(_5B[1]), 'E32');
+			createText(String(_5B[2]), 'F32');
+			createText(String(_5B[0] + _5B[1] + _5B[2]), 'G32');
+
+			let _6A = [
+				chickenCount('6A', '2*'),
+				chickenCount('6A', '3*'),
+				chickenCount('6A', '4*')
+			];
+			createText(String(_6A[0]*2 + _6A[1]*3 + _6A[2]*4), 'B33');
+			createText(String(_6A[0]), 'D33');
+			createText(String(_6A[1]), 'E33');
+			createText(String(_6A[2]), 'F33');
+			createText(String(_6A[0] + _6A[1] + _6A[2]), 'G33');
+
+			let _6B = [
+				chickenCount('6B', '2*'),
+				chickenCount('6B', '3*'),
+				chickenCount('6B', '4*')
+			];
+			createText(String(_6B[0]*2 + _6B[1]*3 + _6B[2]*4), 'B34');
+			createText(String(_6B[0]), 'D34');
+			createText(String(_6B[1]), 'E34');
+			createText(String(_6B[2]), 'F34');
+			createText(String(_6B[0] + _6B[1] + _6B[2]), 'G34');
+
+			let _7A = [
+				chickenCount('7A', '2*'),
+				chickenCount('7A', '3*'),
+				chickenCount('7A', '4*')
+			];
+			createText(String(_7A[0]*2 + _7A[1]*3 + _7A[2]*4), 'B37');
+			createText(String(_7A[0]), 'D37');
+			createText(String(_7A[1]), 'E37');
+			createText(String(_7A[2]), 'F37');
+			createText(String(_7A[0] + _7A[1] + _7A[2]), 'G37');
+
+			let _7B = [
+				chickenCount('7B', '2*'),
+				chickenCount('7B', '3*'),
+				chickenCount('7B', '4*')
+			];
+			createText(String(_7B[0]*2 + _7B[1]*3 + _7B[2]*4), 'B38');
+			createText(String(_7B[0]), 'D38');
+			createText(String(_7B[1]), 'E38');
+			createText(String(_7B[2]), 'F38');
+			createText(String(_7B[0] + _7B[1] + _7B[2]), 'G38');
+
+			let _8A = [
+				chickenCount('8A', '2*'),
+				chickenCount('8A', '3*'),
+				chickenCount('8A', '4*')
+			];
+			createText(String(_8A[0]*2 + _8A[1]*3 + _8A[2]*4), 'B39');
+			createText(String(_8A[0]), 'D39');
+			createText(String(_8A[1]), 'E39');
+			createText(String(_8A[2]), 'F39');
+			createText(String(_8A[0] + _8A[1] + _8A[2]), 'G39');
+
+			let _8B = [
+				chickenCount('8B', '2*'),
+				chickenCount('8B', '3*'),
+				chickenCount('8B', '4*')
+			];
+			createText(String(_8B[0]*2 + _8B[1]*3 + _8B[2]*4), 'B40');
+			createText(String(_8B[0]), 'D40');
+			createText(String(_8B[1]), 'E40');
+			createText(String(_8B[2]), 'F40');
+			createText(String(_8B[0] + _8B[1] + _8B[2]), 'G40');
+
+			// Total
+			let total2 = [
+				_5A, _5B, _6A, _6B,
+				_7A, _7B, _8A, _8B
+			].reduce(
+				(sum, cls) => sum + cls[0]*2 + cls[1]*3 + cls[2]*4,
+				0
+			);
+
+			createText(String(total2 + 10), "B47");
+
+			
 
 			// create PDF link
 			const pdfUrl    = doc.output('bloburl');
@@ -139,15 +405,21 @@
 			const link      = document.createElement('a');
 			link.href       = pdfUrl;
 			link.target     = '_blank';
-			link.textContent= 'Open PDF (Letter 8.5×11")';
+			link.textContent= `Open PDF (${date})`;
 			container.appendChild(link);
 		}
+
+		let date;
 
 		document.getElementById('parseBtn').addEventListener('click', () => {
 			let raw = document.getElementById('sheetInput').value;
 			raw = raw.replace(/\t/g, ' ').replace(/\u0008/g, '');
-			sheet = raw.split(/\r?\n/);
-			console.log('sheet array:', sheet);
+			sheet = raw.split(/\r?\n/).map(row => row + '*');
+			console.log(JSON.stringify(sheet));
+
+			date = (sheet[0].match(/\d{1,2}\/\d{1,2}\/\d{2}/) || [])[0];
+			console.log(date);
+
 			generatePDFGrid();
 		});
 	</script>
