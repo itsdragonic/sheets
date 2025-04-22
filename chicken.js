@@ -156,9 +156,9 @@ function chicken(doc, createText, date, sheet) {
     createText(String(P4B[0] + P4B[1] + P4B[2]), 'G16');
 
     let _3A = [
-        countMatches(' 3A', '2*'),
-        countMatches(' 3A', '3*'),
-        countMatches(' 3A', '4*')
+        countMatches(' 3A ', '2*'),
+        countMatches(' 3A ', '3*'),
+        countMatches(' 3A ', '4*')
     ];
     createText(String(_3A[0]*2 + _3A[1]*3 + _3A[2]*4), 'B17');
     createText(String(_3A[0]), 'D17');
@@ -167,9 +167,9 @@ function chicken(doc, createText, date, sheet) {
     createText(String(_3A[0] + _3A[1] + _3A[2]), 'G17');
 
     let _3B = [
-        countMatches(' 3B', '2*'),
-        countMatches(' 3B', '3*'),
-        countMatches(' 3B', '4*')
+        countMatches(' 3B ', '2*'),
+        countMatches(' 3B ', '3*'),
+        countMatches(' 3B ', '4*')
     ];
     createText(String(_3B[0]*2 + _3B[1]*3 + _3B[2]*4), 'B18');
     createText(String(_3B[0]), 'D18');
@@ -178,9 +178,9 @@ function chicken(doc, createText, date, sheet) {
     createText(String(_3B[0] + _3B[1] + _3B[2]), 'G18');
 
     let _4A = [
-        countMatches(' 4A', '2*'),
-        countMatches(' 4A', '3*'),
-        countMatches(' 4A', '4*')
+        countMatches(' 4A ', '2*'),
+        countMatches(' 4A ', '3*'),
+        countMatches(' 4A ', '4*')
     ];
     createText(String(_4A[0]*2 + _4A[1]*3 + _4A[2]*4), 'B19');
     createText(String(_4A[0]), 'D19');
@@ -189,9 +189,9 @@ function chicken(doc, createText, date, sheet) {
     createText(String(_4A[0] + _4A[1] + _4A[2]), 'G19');
 
     let _4B = [
-        countMatches(' 4B', '2*'),
-        countMatches(' 4B', '3*'),
-        countMatches(' 4B', '4*')
+        countMatches(' 4B ', '2*'),
+        countMatches(' 4B ', '3*'),
+        countMatches(' 4B ', '4*')
     ];
     createText(String(_4B[0]*2 + _4B[1]*3 + _4B[2]*4), 'B20');
     createText(String(_4B[0]), 'D20');

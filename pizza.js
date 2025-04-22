@@ -95,6 +95,26 @@ function pizza(doc, createText, date, sheet) {
     createText(boxesAndSlices(KB[2]*2 + KB[3]*3), 'E8');
     createText(String(KB[4]), 'G8');
 
+    // Totalling
+    doc.setFont(undefined, 'bold');
+
+    let group1 = [P3A, P3B, KA, KB];
+    let total1 = group1.reduce(
+        (sum, cls) => sum + cls[0]*2 + cls[1]*3,
+        0
+    );
+    let total2 = group1.reduce(
+        (sum, cls) => sum + cls[2]*2 + cls[3]*3,
+        0
+    );
+
+    createText(String(total1), "B9");
+    createText(String(total2), "C9");
+    createText(boxesAndSlices(total1), "D9");
+    createText(boxesAndSlices(total2), "E9");
+
+    doc.setFont(undefined, 'normal');
+
     let P4A = [
         countMatches('PreK4A', 'Cheese', ' 2 '),
         countMatches('PreK4A', 'Cheese', ' 3 '),
@@ -173,12 +193,32 @@ function pizza(doc, createText, date, sheet) {
     createText(boxesAndSlices(_2B[2]*2 + _2B[3]*3), 'E16');
     createText(String(_2B[4]), 'G16');
 
+    // Totalling
+    doc.setFont(undefined, 'bold');
+
+    let group2 = [P4A, P4B, _1A, _1B, _2A, _2B];
+    let total3 = group2.reduce(
+        (sum, cls) => sum + cls[0]*2 + cls[1]*3,
+        0
+    );
+    let total4 = group2.reduce(
+        (sum, cls) => sum + cls[2]*2 + cls[3]*3,
+        0
+    );
+
+    createText(String(total3), "B17");
+    createText(String(total4), "C17");
+    createText(boxesAndSlices(total3), "D17");
+    createText(boxesAndSlices(total4), "E17");
+
+    doc.setFont(undefined, 'normal');
+
     let _3A = [
-        countMatches('3A', 'Cheese', ' 2 '),
-        countMatches('3A', 'Cheese', ' 3 '),
-        countMatches('3A', 'Pepperoni', ' 2 '),
-        countMatches('3A', 'Pepperoni', ' 3 '),
-        countMatches('3A')
+        countMatches(' 3A ', 'Cheese', ' 2 '),
+        countMatches(' 3A ', 'Cheese', ' 3 '),
+        countMatches(' 3A ', 'Pepperoni', ' 2 '),
+        countMatches(' 3A ', 'Pepperoni', ' 3 '),
+        countMatches(' 3A ')
     ];
     createText(String(_3A[0]*2 + _3A[1]*3), 'B19');
     createText(String(_3A[2]*2 + _3A[3]*3), 'C19');
@@ -187,11 +227,11 @@ function pizza(doc, createText, date, sheet) {
     createText(String(_3A[4]), 'G19');
 
     let _3B = [
-        countMatches('3B', 'Cheese', ' 2 '),
-        countMatches('3B', 'Cheese', ' 3 '),
-        countMatches('3B', 'Pepperoni', ' 2 '),
-        countMatches('3B', 'Pepperoni', ' 3 '),
-        countMatches('3B')
+        countMatches(' 3B ', 'Cheese', ' 2 '),
+        countMatches(' 3B ', 'Cheese', ' 3 '),
+        countMatches(' 3B ', 'Pepperoni', ' 2 '),
+        countMatches(' 3B ', 'Pepperoni', ' 3 '),
+        countMatches(' 3B ')
     ];
     createText(String(_3B[0]*2 + _3B[1]*3), 'B20');
     createText(String(_3B[2]*2 + _3B[3]*3), 'C20');
@@ -200,11 +240,11 @@ function pizza(doc, createText, date, sheet) {
     createText(String(_3B[4]), 'G20');
 
     let _4A = [
-        countMatches('4A', 'Cheese', ' 2 '),
-        countMatches('4A', 'Cheese', ' 3 '),
-        countMatches('4A', 'Pepperoni', ' 2 '),
-        countMatches('4A', 'Pepperoni', ' 3 '),
-        countMatches('4A')
+        countMatches(' 4A ', 'Cheese', ' 2 '),
+        countMatches(' 4A ', 'Cheese', ' 3 '),
+        countMatches(' 4A ', 'Pepperoni', ' 2 '),
+        countMatches(' 4A ', 'Pepperoni', ' 3 '),
+        countMatches(' 4A ')
     ];
     createText(String(_4A[0]*2 + _4A[1]*3), 'B21');
     createText(String(_4A[2]*2 + _4A[3]*3), 'C21');
@@ -213,17 +253,40 @@ function pizza(doc, createText, date, sheet) {
     createText(String(_4A[4]), 'G21');
 
     let _4B = [
-        countMatches('4B', 'Cheese', ' 2 '),
-        countMatches('4B', 'Cheese', ' 3 '),
-        countMatches('4B', 'Pepperoni', ' 2 '),
-        countMatches('4B', 'Pepperoni', ' 3 '),
-        countMatches('4B')
+        countMatches(' 4B ', 'Cheese', ' 2 '),
+        countMatches(' 4B ', 'Cheese', ' 3 '),
+        countMatches(' 4B ', 'Pepperoni', ' 2 '),
+        countMatches(' 4B ', 'Pepperoni', ' 3 '),
+        countMatches(' 4B ')
     ];
     createText(String(_4B[0]*2 + _4B[1]*3), 'B22');
     createText(String(_4B[2]*2 + _4B[3]*3), 'C22');
     createText(boxesAndSlices(_4B[0]*2 + _4B[1]*3), 'D22');
     createText(boxesAndSlices(_4B[2]*2 + _4B[3]*3), 'E22');
     createText(String(_4B[4]), 'G22');
+
+    // Totalling
+    doc.setFont(undefined, 'bold');
+
+    let group3 = [_3A, _3B, _4A, _4B];
+    let total5 = group3.reduce(
+        (sum, cls) => sum + cls[0]*2 + cls[1]*3,
+        0
+    );
+    let total6 = group3.reduce(
+        (sum, cls) => sum + cls[2]*2 + cls[3]*3,
+        0
+    );
+
+    createText(String(total5), "B23");
+    createText(String(total6), "C23");
+    createText(boxesAndSlices(total5), "D23");
+    createText(boxesAndSlices(total6), "E23");
+
+    createText(boxesAndSlices(total1 + total3 + total5), "D25");
+    createText(boxesAndSlices(total2 + total4 + total6), "E25");
+
+    doc.setFont(undefined, 'normal');
 
     let _5A = [
         countMatches('5A', 'Cheese', ' 2 '),
@@ -277,6 +340,26 @@ function pizza(doc, createText, date, sheet) {
     createText(boxesAndSlices(_6B[2]*2 + _6B[3]*3), 'E32');
     createText(String(_6B[4]), 'G32');
 
+    // Totalling
+    doc.setFont(undefined, 'bold');
+
+    let group4 = [_5A, _5B, _6A, _6B];
+    let total7 = group4.reduce(
+        (sum, cls) => sum + cls[0]*2 + cls[1]*3,
+        0
+    );
+    let total8 = group4.reduce(
+        (sum, cls) => sum + cls[2]*2 + cls[3]*3,
+        0
+    );
+
+    createText(String(total7), "B33");
+    createText(String(total8), "C33");
+    createText(boxesAndSlices(total7), "D33");
+    createText(boxesAndSlices(total8), "E33");
+
+    doc.setFont(undefined, 'normal');
+
     let _7A = [
         countMatches('7A', 'Cheese', ' 2 '),
         countMatches('7A', 'Cheese', ' 3 '),
@@ -329,4 +412,26 @@ function pizza(doc, createText, date, sheet) {
     createText(boxesAndSlices(_8B[2]*2 + _8B[3]*3), 'E38');
     createText(String(_8B[4]), 'G38');
 
+    // Totalling
+    doc.setFont(undefined, 'bold');
+
+    let group5 = [_7A, _7B, _8A, _8B];
+    let total9 = group5.reduce(
+        (sum, cls) => sum + cls[0]*2 + cls[1]*3,
+        0
+    );
+    let total10 = group5.reduce(
+        (sum, cls) => sum + cls[2]*2 + cls[3]*3,
+        0
+    );
+
+    createText(String(total9), "B39");
+    createText(String(total10), "C39");
+    createText(boxesAndSlices(total9), "D39");
+    createText(boxesAndSlices(total10), "E39");
+
+    createText(boxesAndSlices(total7 + total9), "D41");
+    createText(boxesAndSlices(total8 + total10), "E41");
+
+    doc.setFont(undefined, 'normal');
 }

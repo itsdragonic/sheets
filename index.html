@@ -138,17 +138,18 @@
 
 				pageWidth   = doc.internal.pageSize.getWidth();
 				pageHeight  = doc.internal.pageSize.getHeight();
-				margin      = 10;   // 10 mm margins
+				margin      = 10;
 				rows        = 42;
 				cols        = 8;
 				cellWidth   = (pageWidth  - margin * 2) / cols;
 				cellHeight  = (pageHeight - margin * 2) / rows;
-				textOffset  = 2;    // mm from left/top of cell
-				textYOffset = 0;    // additional down shift in mm
+				textOffset  = 2;
+				textYOffset = 0;
 				
 				pizza(doc, createText, date, sheet);
 
 			} else if (mode === 'accounting') {
+
 				doc = new jsPDF({
 					unit: 'mm',
 					format: 'letter',
@@ -157,17 +158,19 @@
 
 				// properties
 				doc.setProperties({ title: `Sheet (${date})` });
-				doc.setFontSize(8);
+				doc.setFontSize(9);
 
 				pageWidth   = doc.internal.pageSize.getWidth();
 				pageHeight  = doc.internal.pageSize.getHeight();
-				margin      = 10;   // 10 mm margins
-				rows        = 42;
-				cols        = 8;
+				margin      = 10;
+				rows        = 29;
+				cols        = 11;
 				cellWidth   = (pageWidth  - margin * 2) / cols;
 				cellHeight  = (pageHeight - margin * 2) / rows;
-				textOffset  = 2;    // mm from left/top of cell
-				textYOffset = 0;    // additional down shift in mm
+				textOffset  = 2;
+				textYOffset = 0;
+
+				accounting(doc, createText, date, sheet);
 			}
 
 			// draw grid lines
