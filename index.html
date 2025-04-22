@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Google Sheets Program</title>
+	<link rel="shortcut icon" type="image/jpg" href="ChickenPizza.jpg">
 	<style>
 		body { font-family: sans-serif; padding: 2rem; }
 		.mode-group { margin-bottom: 1rem; }
@@ -37,7 +38,8 @@
 	<script src="accounting.js"></script>
 </head>
 <body>
-	<h1>Paste Your Sheet Data</h1>
+	<h1>Google Sheets Program</h1>
+	<h2>Paste Your Sheet Data</h2>
 
 	<div class="mode-group">
 		<input type="radio" id="mode-chicken" name="mode" value="chicken">
@@ -52,10 +54,18 @@
 
 	<div id="errorMsg"></div>
 
-	<textarea id="sheetInput" placeholder="Paste here (Ctrl+V)…"></textarea>
+	<textarea id="sheetInput" placeholder="Paste here…"></textarea>
 	<br/>
 	<button id="parseBtn">Parse &amp; Generate PDF</button>
 	<div id="pdfLinkContainer"></div>
+	<p>
+		<br> How to use: <br><br>
+
+		Go to appropriate Google Sheet<br>
+		Ctrl+A then Ctrl+C<br>
+		Go to this program, select mode, and paste (Ctrl+V)
+
+	</p>
 
 	<script>
 		const { jsPDF } = window.jspdf;
